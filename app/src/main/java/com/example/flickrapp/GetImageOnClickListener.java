@@ -32,7 +32,7 @@ public class GetImageOnClickListener implements View.OnClickListener {
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 InputStream in = new BufferedInputStream(conn.getInputStream());
-                String s = readStream(in);
+                response = readStream(in);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -41,9 +41,7 @@ public class GetImageOnClickListener implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(String result) {
-            Log.i("Result: ", result);
             String json = result.substring("jsonFlickrFeed(".length(), result.length() - 1);
-            Log.d("JSON Response", json);
             // parse JSON response and handle the image download
             // ...
         }
