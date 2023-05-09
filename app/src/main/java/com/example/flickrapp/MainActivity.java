@@ -14,6 +14,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button getImageButton = findViewById(R.id.button);
-        getImageButton.setOnClickListener(new GetImageOnClickListener());
+        getImageButton.setOnClickListener(new GetImageOnClickListener(image));
     }
 }

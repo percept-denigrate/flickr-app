@@ -3,6 +3,7 @@ package com.example.flickrapp;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.arch.core.internal.SafeIterableMap;
 
@@ -28,7 +29,12 @@ public class GetImageOnClickListener implements View.OnClickListener {
 
     private class AsyncFlickrJSONData extends AsyncTask<String, Void, String> {
 
-        @Override
+        private ImageView image;
+        public AsyncFlickrJSONData(ImageView image) {
+            this.image = image;
+        }
+
+            @Override
         protected String doInBackground(String... urls) {
             String response = "";
             try {
