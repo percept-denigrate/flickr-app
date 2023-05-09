@@ -6,6 +6,10 @@ import android.view.View;
 
 import androidx.arch.core.internal.SafeIterableMap;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,10 +45,25 @@ public class GetImageOnClickListener implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(String result) {
-            String json = result.substring("jsonFlickrFeed(".length(), result.length() - 1);
-            Log.d("JSON Response", json);
-            // parse JSON response and handle the image download
-            // ...
+            String jsonString = result.substring("jsonFlickrFeed(".length(), result.length() - 1);
+            Log.d("JSON Response", jsonString);
+            JSONObject json = null;
+            try {
+                json = new JSONObject(jsonString);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+            String url = null;
+            try {
+                url = json
+                        .getJSONArray("items")
+                        .getJSONObject(1)
+                        .getJSONObject("media")
+                        .getString("m");
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+            Log.i("url: ", url);
         }
     }
     private String readStream(InputStream is) throws IOException {
