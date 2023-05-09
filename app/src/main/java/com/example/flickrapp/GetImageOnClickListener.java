@@ -70,6 +70,7 @@ public class GetImageOnClickListener implements View.OnClickListener {
                         .getJSONObject(1)
                         .getJSONObject("media")
                         .getString("m");
+                new AsyncBitmapDownloader(this.image).execute(url);
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
