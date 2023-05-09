@@ -22,9 +22,13 @@ import java.net.URL;
 
 public class GetImageOnClickListener implements View.OnClickListener {
 
-    @Override
+    private ImageView image;
+    GetImageOnClickListener(ImageView image) {
+        this.image = image;
+    }
+        @Override
     public void onClick(View view) {
-        new AsyncFlickrJSONData().execute("https://www.flickr.com/services/feeds/photos_public.gne?tags=trees&format=json");
+        new AsyncFlickrJSONData(this.image).execute("https://www.flickr.com/services/feeds/photos_public.gne?tags=trees&format=json");
     }
 
     private class AsyncFlickrJSONData extends AsyncTask<String, Void, String> {
