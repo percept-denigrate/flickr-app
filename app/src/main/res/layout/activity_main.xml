@@ -20,6 +20,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
