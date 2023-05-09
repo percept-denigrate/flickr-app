@@ -1,6 +1,7 @@
 package com.example.flickrapp;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 
 import androidx.arch.core.internal.SafeIterableMap;
@@ -40,6 +41,9 @@ public class GetImageOnClickListener implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(String result) {
+            Log.i("Result: ", result);
+            String json = result.substring("jsonFlickrFeed(".length(), result.length() - 1);
+            Log.d("JSON Response", json);
             // parse JSON response and handle the image download
             // ...
         }
