@@ -42,6 +42,7 @@ public class GetImageOnClickListener implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             String json = result.substring("jsonFlickrFeed(".length(), result.length() - 1);
+            Log.d("JSON Response", json);
             // parse JSON response and handle the image download
             // ...
         }
