@@ -3,6 +3,8 @@ package com.example.flickrapp;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.ImageView;
 
 import java.io.BufferedInputStream;
@@ -41,6 +43,18 @@ public class AsyncBitmapDownloader extends AsyncTask<String, Void, Bitmap> {
             if (isCancelled()) break;
         }
         return bitmap;
+    }
+    @Override
+    protected void onPostExecute(Bitmap bitmap) {
+        new Handler(Looper.getMainLooper()).post(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        image.setImageBitmap(bitmap);
+                    }
+                }
+        );
+
     }
 }
 
