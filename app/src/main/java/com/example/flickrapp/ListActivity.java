@@ -5,10 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -22,7 +18,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Vector;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -34,42 +29,15 @@ public class ListActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.list);
         Adapter adapter = new Adapter();
         listView.setAdapter(adapter);
+        String url = "https://www.flickr.com/services/feeds/photos_public.gne?tags=trees&format=json";
+        new AsyncFlickrJSONDataForList(adapter).execute(url);
     }
 
-    private class Adapter extends BaseAdapter{
-
-        private Vector<String> urls = new Vector<String>();
-
-        public void add(String url){
-            urls.add(url);
-        }
-        @Override
-        public int getCount() {
-            return urls.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return urls.get(i);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            Log.i("getView","To do");
-            return null;
-        }
-    }
-
-    private class AsyncFlickrJSONDataForList extends AsyncTask<String, Void, String> {
+    public class AsyncFlickrJSONDataForList extends AsyncTask<String, Void, String> {
 
         private ListView list;
         private Adapter adapter;
-        public AsyncFlickrJSONDataForList(ListView list, Adapter adapter) {
+        public AsyncFlickrJSONDataForList(Adapter adapter) {
             this.list = list;
             this.adapter = adapter;
         }
@@ -108,12 +76,13 @@ public class ListActivity extends AppCompatActivity {
                         .getJSONObject(1)
                         .getJSONObject("media")
                         .getString("m");
+                    Log.i("url: ", url);
+                    adapter.add(url);
                 }
                 //new AsyncBitmapDownloader(this.image).execute(url);
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
-            Log.i("url: ", url);
         }
     }
     private String readStream(InputStream is) throws IOException {
