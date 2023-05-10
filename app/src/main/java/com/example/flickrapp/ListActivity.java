@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+
+import java.util.Vector;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -15,20 +16,27 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
         ListView listView = (ListView) findViewById(R.id.list);
         Adapter adapter = new Adapter();
+        listView.setAdapter(adapter);
     }
 
     private class Adapter extends BaseAdapter{
 
+        private Vector<String> urls;
+
+        public void add(String url){
+            urls.add(url);
+        }
         @Override
         public int getCount() {
-            return 0;
+            return urls.size();
         }
 
         @Override
         public Object getItem(int i) {
-            return null;
+            return urls.get(i);
         }
 
         @Override
