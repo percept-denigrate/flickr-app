@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -67,8 +68,10 @@ public class ListActivity extends AppCompatActivity {
     private class AsyncFlickrJSONDataForList extends AsyncTask<String, Void, String> {
 
         private ListView list;
-        public AsyncFlickrJSONDataForList(ListView list) {
+        private Adapter adapter;
+        public AsyncFlickrJSONDataForList(ListView list, Adapter adapter) {
             this.list = list;
+            this.adapter = adapter;
         }
 
         @Override
@@ -98,12 +101,15 @@ public class ListActivity extends AppCompatActivity {
             }
             String url = null;
             try {
-                url = json
-                        .getJSONArray("items")
+                JSONArray array = json.getJSONArray("items");
+                int i;
+                for (i = 0; i < array.length(),i++){
+                    url = array
                         .getJSONObject(1)
                         .getJSONObject("media")
                         .getString("m");
-                new AsyncBitmapDownloader(this.image).execute(url);
+                }
+                //new AsyncBitmapDownloader(this.image).execute(url);
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
