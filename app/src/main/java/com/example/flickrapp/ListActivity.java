@@ -38,7 +38,7 @@ public class ListActivity extends AppCompatActivity {
 
     private class Adapter extends BaseAdapter{
 
-        private Vector<String> urls;
+        private Vector<String> urls = new Vector<String>();
 
         public void add(String url){
             urls.add(url);
@@ -103,7 +103,7 @@ public class ListActivity extends AppCompatActivity {
             try {
                 JSONArray array = json.getJSONArray("items");
                 int i;
-                for (i = 0; i < array.length(),i++){
+                for (i = 0; i < array.length(); i++){
                     url = array
                         .getJSONObject(1)
                         .getJSONObject("media")
