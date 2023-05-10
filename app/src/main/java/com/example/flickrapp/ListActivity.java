@@ -66,9 +66,9 @@ public class ListActivity extends AppCompatActivity {
 
     private class AsyncFlickrJSONDataForList extends AsyncTask<String, Void, String> {
 
-        private ImageView image;
-        public AsyncFlickrJSONDataForList(ImageView image) {
-            this.image = image;
+        private ListView list;
+        public AsyncFlickrJSONDataForList(ListView list) {
+            this.list = list;
         }
 
         @Override
