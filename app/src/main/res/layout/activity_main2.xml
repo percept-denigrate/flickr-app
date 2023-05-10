@@ -7,6 +7,7 @@
     tools:context=".ListActivity">
 
     <LinearLayout
+        android:id="@+id/list"
         android:layout_width="362dp"
         android:layout_height="549dp"
         android:orientation="vertical"
