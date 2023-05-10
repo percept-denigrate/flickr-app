@@ -7,7 +7,6 @@
     tools:context=".ListActivity">
 
     <LinearLayout
-        android:id="@+id/list"
         android:layout_width="362dp"
         android:layout_height="549dp"
         android:orientation="vertical"
@@ -17,6 +16,7 @@
         tools:layout_editor_absoluteY="76dp">
 
         <ListView
+            android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
