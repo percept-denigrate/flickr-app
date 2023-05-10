@@ -2,7 +2,6 @@ package com.example.flickrapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         changeActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent callListActivity = new Intent(getApplicationContext(), MainActivity2.class);
+                Intent callListActivity = new Intent(getApplicationContext(), ListActivity.class);
                 startActivity(callListActivity);
             }
         });
